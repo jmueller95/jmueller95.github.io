@@ -11,10 +11,13 @@ function activateGallery() {
   let description = galleryInfo.querySelector(".description");
 
   thumbnails.forEach(function(thumbnail) {
+		// Preload large images.
+    	let largeVersion = new Image();
+    	largeVersion.src = thumbnail.dataset.largeVersion;
+
     thumbnail.addEventListener("click", function() {
       // Set clicked image as main image.
-      let newImageSrc = thumbnail.dataset.largeVersion;
-      mainImage.setAttribute("src", newImageSrc);
+      mainImage.setAttribute("src", largeVersion.src);
       mainImage.setAttribute("alt", thumbnail.alt);
 
       // Change which image is current.
